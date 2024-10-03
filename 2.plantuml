@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Humain {
+ -nom: string
+    -prenom: string
+    -dateNaissance: datetime
+    +Humain(nom: string, prenom: string, dateNaissance: datetime)
+    +getNom(): string
+    +setNom(nom: string): void
+    +getPrenom(): string
+    +setPrenom(prenom: string): void
+    +getDateNaissance(): datetime
+    +setDateNaissance(dateNaissance: datetime): void
+    +donneTexte(): string
+}
+Humain <|-- Arbitre
+class Arbitre{
+    -nationalite: string
+
+    +Arbitre(nom: string, prenom: string, dateNaissance: datetime, nationalite: string)
+    +getNationalite(): string
+    +donneTexte(): string
+}
+@enduml

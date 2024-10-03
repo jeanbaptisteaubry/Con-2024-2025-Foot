@@ -1,0 +1,16 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Humain {
+    -nom: string
+    -prenom: string
+    -dateNaissance: datetime
+    +Humain(nom: string, prenom: string, datetimeNaissance: datetime)
+    +getNom(): string
+    +setNom(nom: string): void
+    +getPrenom(): string
+    +setPrenom(prenom: string): void
+    +getDateNaissance(): datetime
+    +setDateNaissance(dateNaissance: datetime): void
+    +donneTexte(): string
+}
+@enduml

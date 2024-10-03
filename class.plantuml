@@ -1,0 +1,148 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Humain {
+ -nom: String
+    -prenom: String
+    -dateNaissance: Date
+    +Humain(nom: String, prenom: String, dateNaissance: Date)
+    +getNom(): String
+    +setNom(nom: String): void
+    +getPrenom(): String
+    +setPrenom(prenom: String): void
+    +getDateNaissance(): Date
+    +setDateNaissance(dateNaissance: Date): void
+    +donneTexte(): string
+}
+Humain <|-- Arbitre
+class Arbitre{
+    -nationalite: String
+
+    +Arbitre(nom: String, prenom: String, dateNaissance: Date, nationalite: String)
+    +getNationalite(): String
+    +donneTexte(): string
+}
+
+class Stade{
+    -nom: String
+    -ville: String
+    -capacite: int
+    +Stade(nom: String, ville: String, capacite: int)
+    +getNom(): String
+    +getVille(): String
+    +getCapacite(): int
+    +donneTexte(): string
+}
+Humain <|-- Joueur
+class Joueur{
+    -numero: int
+    -poste: String
+    +Joueur(nom: String, prenom: String, dateNaissance: Date, numero: int, poste: String, equipe: Equipe)
+    +getNumero(): int
+    +setNumero(numero: int): void
+    +getEquipe(): Equipe
+    +setEquipe(equipe: Equipe): void
+    +donneTexte(): string
+}
+
+Humain <|-- Selectionneur
+class Selectionneur{
+    -nationalite: String
+    +Selectionneur(nom: String, prenom: String, dateNaissance: Date, nationalite: String, equipe: Equipe)
+    +getNationalite(): String
+    +getEquipe(): Equipe
+    +setEquipe(equipe: Equipe): void
+    +donneTexte(): string
+}
+
+class Equipe{
+    -nom: String
+    -pays: String
+    +Equipe(nom: String, pays: String, selectionneur: Selectionneur)
+    +getNom(): String
+    +getPays(): String
+    +getSelectionneur(): Selectionneur
+    +setSelectionneur(selectionneur: Selectionneur): void
+    +getJoueurs(): Joueur[]
+    +ajouterJoueur(joueur: Joueur): void
+    +donneTexte(): string
+}
+
+Joueur "1 -equipe" -- "0..* -joueurs" Equipe
+Selectionneur "0..1 equipe" -- "0..1 -selectionneur" Equipe
+
+class Evenement{
+    -horaire: Time
+    -description: String
+    +Evenement(horaire: Time, description: String)
+    +getHoraire(): Time
+    +setHoraire(horaire: Time): void
+    +getDescription(): String
+    +setDescription(description: String): void
+    +donneTexte(): string
+}
+
+Joueur "1 \n-joueurEntrant" <--x  Remplacement
+Joueur "1 \n-joueurSortant" <--x  Remplacement
+Evenement <|-- Remplacement
+class Remplacement{
+
+    +Remplacement(horaire: Time, description: String, joueurSortant: Joueur, joueurEntrant: Joueur)
+    +getJoueurSortant(): Joueur
+    +setJoueurSortant(joueurSortant: Joueur): void
+    +getJoueurEntrant(): Joueur
+    +setJoueurEntrant(joueurEntrant: Joueur): void
+    +donneTexte(): string
+}
+
+Evenement <|-- FaitDeJeu
+Joueur "1 \n-joueurAuteur" <--x  FaitDeJeu
+class FaitDeJeu{
+    +FaitDeJeu(horaire: Time, description: String, joueurAuteur: Joueur)
+    +getJoueurAuteur(): Joueur
+    +setJoueurAuteur(joueurAuteur: Joueur): void
+    +donneTexte(): string
+}
+
+ FaitDeJeu <|-- Faute
+Joueur "1 \n-joueurVictime" <--x  Faute
+class Faute{
+    -carton: String
+    +Faute(horaire: Time, description: String, joueurAuteur: Joueur, joueurVictime: Joueur, carton: String)
+    +getJoueurVictime(): Joueur
+    +setJoueurVictime(joueurVictime: Joueur): void
+    +getCarton(): String
+    +setCarton(carton: String): void
+    +donneTexte(): string
+}
+
+FaitDeJeu <|--  But
+Equipe "1 \n-EquipeProfit" <--x  But
+class But{
+    -penalty: boolean
+    +But(horaire: Time, description: String, joueurAuteur: Joueur, equipeProfit: Equipe, penalty: boolean)
+    +isPenalty(): boolean
+    +setPenalty(penalty: boolean): void
+    +donneTexte(): string
+}
+
+Equipe "1 \n-equipeDomicile" <--x  Match
+Equipe "1 \n-equipeExterieur" <--x  Match
+Stade "1 \n-stadeMatch" <--x  Match
+Arbitre "1 \n-arbitrer" <--x  Match
+Evenement "0..* \n-evenements" <--x  Match
+
+class Match{
+    -scoreDomicile: int
+    -scoreExterieur: int
+    +Match(horaire: Time, description: String, equipeDomicile: Equipe, equipeExterieur: Equipe, stadeMatch: Stade, arbitrer: Arbitre)
+    +getScoreDomicile(): int
+    +getScoreExterieur(): int
+    +getEquipeDomicile(): Equipe
+    +getEquipeExterieur(): Equipe
+    +getStadeMatch(): Stade
+    +getArbitrer(): Arbitre
+    +getEvenements(): Evenement[]
+    +ajouterEvenement(evenement: Evenement): void
+    +donneTexte(): string
+}
+@enduml
