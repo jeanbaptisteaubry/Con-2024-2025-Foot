@@ -27,8 +27,7 @@ class Stade{
 Humain <|-- Joueur
 class Joueur{
     -numero: int
-    -poste: string
-    +Joueur(nom: string, prenom: string, dateNaissance: datetime, numero: int, poste: string, equipe: Equipe)
+    +Joueur(nom: string, prenom: string, dateNaissance: datetime, numero: int, equipe: Equipe)
     +getNumero(): int
     +setNumero(numero: int): void
     +getEquipe(): Equipe

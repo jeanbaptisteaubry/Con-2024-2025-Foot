@@ -35,8 +35,7 @@ class Stade{
 Humain <|-- Joueur
 class Joueur{
     -numero: int
-    -poste: String
-    +Joueur(nom: String, prenom: String, dateNaissance: Date, numero: int, poste: String, equipe: Equipe)
+    +Joueur(nom: String, prenom: String, dateNaissance: Date, numero: int, equipe: Equipe)
     +getNumero(): int
     +setNumero(numero: int): void
     +getEquipe(): Equipe
@@ -67,8 +66,8 @@ class Equipe{
     +donneTexte(): string
 }
 
-Joueur "1 -equipe" -- "0..* -joueurs" Equipe
-Selectionneur "0..1 equipe" -- "0..1 -selectionneur" Equipe
+ Equipe "1 -equipe" -- "0..* -joueurs" Joueur
+Equipe  "0..1 equipe" -- "0..1 -selectionneur" Selectionneur
 
 class Evenement{
     -horaire: Time

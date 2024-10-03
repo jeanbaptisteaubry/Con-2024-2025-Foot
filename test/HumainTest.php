@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class HumainTest extends TestCase
 {
-    public function testConstructeur()
+    public function testConstructeur(): void
     {
         $giroud = new Humain("Giroud", "Olivier", new DateTime("1986-09-30"));
         $this->assertEquals("Giroud", $giroud->getNom());
@@ -16,12 +16,12 @@ class HumainTest extends TestCase
         $this->assertEquals(new DateTime("1986-09-30"), $giroud->getDateNaissance());
     }
 
-    public function testDonneTexte() {
+    public function testDonneTexte(): void {
         $giroud = new Humain("Giroud", "Olivier", new DateTime("1986-09-30"));
         $this->assertEquals("Giroud Olivier né le  30/09/1986", $giroud->donneTexte());
     }
 
-    public function testSetters(){
+    public function testSetters(): void{
         $giroud = new Humain("Giroud", "Olivier", new DateTime("1986-09-30"));
         $giroud->setNom("Super");
         $giroud->setPrenom("Juste");
