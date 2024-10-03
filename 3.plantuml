@@ -1,0 +1,48 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Humain {
+ -nom: string
+    -prenom: string
+    -dateNaissance: datetime
+    +Humain(nom: string, prenom: string, dateNaissance: datetime)
+    +getNom(): string
+    +setNom(nom: string): void
+    +getPrenom(): string
+    +setPrenom(prenom: string): void
+    +getDateNaissance(): datetime
+    +setDateNaissance(dateNaissance: datetime): void
+    +donneTexte(): string
+}
+class Stade{
+    -nom: string
+    -ville: string
+    -capacite: int
+    +Stade(nom: string, ville: string, capacite: int)
+    +getNom(): string
+    +getVille(): string
+    +getCapacite(): int
+    +donneTexte(): string
+}
+
+Humain <|-- Joueur
+class Joueur{
+    -numero: int
+    -poste: string
+    +Joueur(nom: string, prenom: string, dateNaissance: datetime, numero: int, poste: string, equipe: Equipe)
+    +getNumero(): int
+    +setNumero(numero: int): void
+    +getEquipe(): Equipe
+    +setEquipe(equipe: Equipe): void
+    +donneTexte(): string
+}
+
+Humain <|-- Selectionneur
+class Selectionneur{
+    -nationalite: string
+    +Selectionneur(nom: string, prenom: string, dateNaissance: datetime, nationalite: string, equipe: Equipe)
+    +getNationalite(): string
+    +getEquipe(): Equipe
+    +setEquipe(equipe: Equipe): void
+    +donneTexte(): string
+}
+@enduml
