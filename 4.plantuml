@@ -1,0 +1,42 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Humain {
+ -nom: string
+    -prenom: string
+    -dateNaissance: datetime
+    +Humain(nom: string, prenom: string, dateNaissance: datetime)
+    +getNom(): string
+    +setNom(nom: string): void
+    +getPrenom(): string
+    +setPrenom(prenom: string): void
+    +getDateNaissance(): datetime
+    +setDateNaissance(dateNaissance: datetime): void
+    +donneTexte(): string
+}
+
+Humain <|-- Selectionneur
+class Selectionneur{
+    -nationalite: string
+    +Selectionneur(nom: string, prenom: string, dateNaissance: datetime, nationalite: string, equipe: Equipe)
+    +getNationalite(): string
+    +getEquipe(): Equipe
+    +setEquipe(equipe: Equipe): void
+    +donneTexte(): string
+}
+
+
+class Equipe{
+    -nom: string
+    -pays: string
+    +Equipe(nom: string, pays: string)
+    +getNom(): string
+    +getPays(): string
+    +getSelectionneur(): Selectionneur
+    +setSelectionneur(selectionneur: Selectionneur): void
+    +getJoueurs(): Joueur[]
+    +ajouterJoueur(joueur: Joueur): void
+    +donneTexte(): string
+}
+
+Equipe  "0..1 -equipe" -- "0..1 -selectionneur" Selectionneur
+@enduml
