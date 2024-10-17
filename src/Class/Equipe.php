@@ -7,6 +7,7 @@ class Equipe
     private string $nom;
     private string $pays;
 
+    private $joueurs = [];
     private ?Selectionneur $selectionneur = null;
     public function __construct(string $nom, string $pays)
     {
@@ -42,12 +43,39 @@ class Equipe
         $this->selectionneur = $nouveauSelectionneur;
     }
 
+    public function getJoueurs() : array
+    {
+        return $this->joueurs;
+    }
+
+    public function ajouterJoueur(Joueur $joueur): void
+    {
+        $this->joueurs[] = $joueur;
+        if($joueur->getEquipe() != $this)
+            $joueur->getEquipe()->retirerJoueur($joueur);
+        $joueur->setEquipe($this);
+    }
+
+    public function retirerJoueur(Joueur $joueur): void
+    {
+        if(in_array($joueur, $this->joueurs)){
+            unset($this->joueurs[array_search($joueur, $this->joueurs)]);
+        }
+    }
+
     public function donneTexte(): string
     {
+        $str = "Equipe : ".$this->nom." ".$this->pays;
         if($this->selectionneur != null){
-            return "Equipe : ".$this->nom." ".$this->pays." Selectionneur : ".$this->selectionneur->getNom()." ".$this->selectionneur->getPrenom();
+            $str.="\n*** Selectionneur : ".$this->selectionneur->getNom()." ".$this->selectionneur->getPrenom();
         }
-        return "Equipe : ".$this->nom." ".$this->pays;
+        if(count($this->joueurs) > 0){
+            $str.="\n*** Joueurs : ";
+            foreach($this->joueurs as $joueur){
+                $str.="\n     ".$joueur->donneTexte();
+            }
+        }
+        return $str;
     }
 
 }
