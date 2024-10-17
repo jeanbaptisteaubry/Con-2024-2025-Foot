@@ -1,14 +1,14 @@
 @startuml
 skinparam classAttributeIconSize 0
 class Humain {
- -nom: String
-    -prenom: String
+ -nom: string
+    -prenom: string
     -dateNaissance: Date
-    +Humain(nom: String, prenom: String, dateNaissance: Date)
-    +getNom(): String
-    +setNom(nom: String): void
-    +getPrenom(): String
-    +setPrenom(prenom: String): void
+    +Humain(nom: string, prenom: string, dateNaissance: Date)
+    +getNom(): string
+    +setNom(nom: string): void
+    +getPrenom(): string
+    +setPrenom(prenom: string): void
     +getDateNaissance(): Date
     +setDateNaissance(dateNaissance: Date): void
     +donneTexte(): string
@@ -18,7 +18,7 @@ class Humain {
 Humain <|-- Joueur
 class Joueur{
     -numero: int
-    +Joueur(nom: String, prenom: String, dateNaissance: Date, numero: int, equipe: Equipe)
+    +Joueur(nom: string, prenom: string, dateNaissance: Date, numero: int, equipe: Equipe)
     +getNumero(): int
     +setNumero(numero: int): void
     +getEquipe(): Equipe
@@ -31,13 +31,13 @@ class Joueur{
 
 
 class Evenement{
-    -horaire: Time
-    -description: String
-    +Evenement(horaire: Time, description: String)
-    +getHoraire(): Time
-    +setHoraire(horaire: Time): void
-    +getDescription(): String
-    +setDescription(description: String): void
+    -horaire: datetime
+    -description: string
+    +Evenement(horaire: DateTime, description: string)
+    +getHoraire(): DateTime
+    +setHoraire(horaire: DateTime): void
+    +getDescription(): string
+    +setDescription(description: string): void
     +donneTexte(): string
 }
 
@@ -46,7 +46,7 @@ Joueur "1 \n-joueurSortant" <--x  Remplacement
 Evenement <|-- Remplacement
 class Remplacement{
 
-    +Remplacement(horaire: Time, description: String, joueurSortant: Joueur, joueurEntrant: Joueur)
+    +Remplacement(horaire: DateTime, description: string, joueurSortant: Joueur, joueurEntrant: Joueur)
     +getJoueurSortant(): Joueur
     +setJoueurSortant(joueurSortant: Joueur): void
     +getJoueurEntrant(): Joueur
@@ -57,7 +57,7 @@ class Remplacement{
 Evenement <|-- FaitDeJeu
 Joueur "1 \n-joueurAuteur" <--x  FaitDeJeu
 class FaitDeJeu{
-    +FaitDeJeu(horaire: Time, description: String, joueurAuteur: Joueur)
+    +FaitDeJeu(horaire: DateTime, description: string, joueurAuteur: Joueur)
     +getJoueurAuteur(): Joueur
     +setJoueurAuteur(joueurAuteur: Joueur): void
     +donneTexte(): string
@@ -66,12 +66,12 @@ class FaitDeJeu{
  FaitDeJeu <|-- Faute
 Joueur "1 \n-joueurVictime" <--x  Faute
 class Faute{
-    -carton: String
-    +Faute(horaire: Time, description: String, joueurAuteur: Joueur, joueurVictime: Joueur, carton: String)
+    -carton: string
+    +Faute(horaire: DateTime, description: string, joueurAuteur: Joueur, joueurVictime: Joueur, carton: string)
     +getJoueurVictime(): Joueur
     +setJoueurVictime(joueurVictime: Joueur): void
-    +getCarton(): String
-    +setCarton(carton: String): void
+    +getCarton(): string
+    +setCarton(carton: string): void
     +donneTexte(): string
 }
 
