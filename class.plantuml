@@ -1,41 +1,41 @@
 @startuml
 skinparam classAttributeIconSize 0
 class Humain {
- -nom: String
-    -prenom: String
+ -nom: string
+    -prenom: string
     -dateNaissance: Date
-    +Humain(nom: String, prenom: String, dateNaissance: Date)
-    +getNom(): String
-    +setNom(nom: String): void
-    +getPrenom(): String
-    +setPrenom(prenom: String): void
+    +Humain(nom: string, prenom: string, dateNaissance: Date)
+    +getNom(): string
+    +setNom(nom: string): void
+    +getPrenom(): string
+    +setPrenom(prenom: string): void
     +getDateNaissance(): Date
     +setDateNaissance(dateNaissance: Date): void
     +donneTexte(): string
 }
 Humain <|-- Arbitre
 class Arbitre{
-    -nationalite: String
+    -nationalite: string
 
-    +Arbitre(nom: String, prenom: String, dateNaissance: Date, nationalite: String)
-    +getNationalite(): String
+    +Arbitre(nom: string, prenom: string, dateNaissance: Date, nationalite: string)
+    +getNationalite(): string
     +donneTexte(): string
 }
 
 class Stade{
-    -nom: String
-    -ville: String
+    -nom: string
+    -ville: string
     -capacite: int
-    +Stade(nom: String, ville: String, capacite: int)
-    +getNom(): String
-    +getVille(): String
+    +Stade(nom: string, ville: string, capacite: int)
+    +getNom(): string
+    +getVille(): string
     +getCapacite(): int
     +donneTexte(): string
 }
 Humain <|-- Joueur
 class Joueur{
     -numero: int
-    +Joueur(nom: String, prenom: String, dateNaissance: Date, numero: int, equipe: Equipe)
+    +Joueur(nom: string, prenom: string, dateNaissance: Date, numero: int, equipe: Equipe)
     +getNumero(): int
     +setNumero(numero: int): void
     +getEquipe(): Equipe
@@ -45,20 +45,20 @@ class Joueur{
 
 Humain <|-- Selectionneur
 class Selectionneur{
-    -nationalite: String
-    +Selectionneur(nom: String, prenom: String, dateNaissance: Date, nationalite: String, equipe: Equipe)
-    +getNationalite(): String
+    -nationalite: string
+    +Selectionneur(nom: string, prenom: string, dateNaissance: Date, nationalite: string, equipe: Equipe)
+    +getNationalite(): string
     +getEquipe(): Equipe
     +setEquipe(equipe: Equipe): void
     +donneTexte(): string
 }
 
 class Equipe{
-    -nom: String
-    -pays: String
-    +Equipe(nom: String, pays: String, selectionneur: Selectionneur)
-    +getNom(): String
-    +getPays(): String
+    -nom: string
+    -pays: string
+    +Equipe(nom: string, pays: string, selectionneur: Selectionneur)
+    +getNom(): string
+    +getPays(): string
     +getSelectionneur(): Selectionneur
     +setSelectionneur(selectionneur: Selectionneur): void
     +getJoueurs(): Joueur[]
@@ -71,12 +71,12 @@ Equipe  "0..1 equipe" -- "0..1 -selectionneur" Selectionneur
 
 class Evenement{
     -horaire: Time
-    -description: String
-    +Evenement(horaire: Time, description: String)
+    -description: string
+    +Evenement(horaire: Time, description: string)
     +getHoraire(): Time
     +setHoraire(horaire: Time): void
-    +getDescription(): String
-    +setDescription(description: String): void
+    +getDescription(): string
+    +setDescription(description: string): void
     +donneTexte(): string
 }
 
@@ -85,7 +85,7 @@ Joueur "1 \n-joueurSortant" <--x  Remplacement
 Evenement <|-- Remplacement
 class Remplacement{
 
-    +Remplacement(horaire: Time, description: String, joueurSortant: Joueur, joueurEntrant: Joueur)
+    +Remplacement(horaire: Time, description: string, joueurSortant: Joueur, joueurEntrant: Joueur)
     +getJoueurSortant(): Joueur
     +setJoueurSortant(joueurSortant: Joueur): void
     +getJoueurEntrant(): Joueur
@@ -96,7 +96,7 @@ class Remplacement{
 Evenement <|-- FaitDeJeu
 Joueur "1 \n-joueurAuteur" <--x  FaitDeJeu
 class FaitDeJeu{
-    +FaitDeJeu(horaire: Time, description: String, joueurAuteur: Joueur)
+    +FaitDeJeu(horaire: Time, description: string, joueurAuteur: Joueur)
     +getJoueurAuteur(): Joueur
     +setJoueurAuteur(joueurAuteur: Joueur): void
     +donneTexte(): string
@@ -105,12 +105,12 @@ class FaitDeJeu{
  FaitDeJeu <|-- Faute
 Joueur "1 \n-joueurVictime" <--x  Faute
 class Faute{
-    -carton: String
-    +Faute(horaire: Time, description: String, joueurAuteur: Joueur, joueurVictime: Joueur, carton: String)
+    -carton: string
+    +Faute(horaire: Time, description: string, joueurAuteur: Joueur, joueurVictime: Joueur, carton: string)
     +getJoueurVictime(): Joueur
     +setJoueurVictime(joueurVictime: Joueur): void
-    +getCarton(): String
-    +setCarton(carton: String): void
+    +getCarton(): string
+    +setCarton(carton: string): void
     +donneTexte(): string
 }
 
@@ -118,7 +118,7 @@ FaitDeJeu <|--  But
 Equipe "1 \n-EquipeProfit" <--x  But
 class But{
     -penalty: boolean
-    +But(horaire: Time, description: String, joueurAuteur: Joueur, equipeProfit: Equipe, penalty: boolean)
+    +But(horaire: Time, description: string, joueurAuteur: Joueur, equipeProfit: Equipe, penalty: boolean)
     +isPenalty(): boolean
     +setPenalty(penalty: boolean): void
     +donneTexte(): string
@@ -133,7 +133,7 @@ Evenement "0..* \n-evenements" <--x  Match
 class Match{
     -scoreDomicile: int
     -scoreExterieur: int
-    +Match(horaire: Time, description: String, equipeDomicile: Equipe, equipeExterieur: Equipe, stadeMatch: Stade, arbitrer: Arbitre)
+    +Match(horaire: Time, description: string, equipeDomicile: Equipe, equipeExterieur: Equipe, stadeMatch: Stade, arbitrer: Arbitre)
     +getScoreDomicile(): int
     +getScoreExterieur(): int
     +getEquipeDomicile(): Equipe
