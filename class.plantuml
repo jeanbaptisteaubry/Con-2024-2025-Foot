@@ -131,17 +131,19 @@ Arbitre "1 \n-arbitrer" <--x  Match
 Evenement "0..* \n-evenements" <--x  Match
 
 class Match{
-    -scoreDomicile: int
-    -scoreExterieur: int
-    +Match(horaire: Time, description: string, equipeDomicile: Equipe, equipeExterieur: Equipe, stadeMatch: Stade, arbitrer: Arbitre)
-    +getScoreDomicile(): int
-    +getScoreExterieur(): int
-    +getEquipeDomicile(): Equipe
-    +getEquipeExterieur(): Equipe
-    +getStadeMatch(): Stade
-    +getArbitrer(): Arbitre
-    +getEvenements(): Evenement[]
-    +ajouterEvenement(evenement: Evenement): void
-    +donneTexte(): string
+   -scoreDomicile: int
+   -scoreExrterieur: int
+   -horaire: dateTime
+   -description: string
+   +Match(horaire: dateTime, description: string, equipeDomicile: Equipe, equipeExterieur: Equipe, stadeMatch: Stade, arbitrer: Arbitre)
+   +getScoreDomicile(): int
+   +getScoreExterieur(): int
+   +getEquipeDomicile(): Equipe
+   +getStadeMatch(): Stade
+   +getArbitrer(): Arbitre
+   +getEvenements(): Evenement[]
+   +ajouterEvenement(evenement: Evenement): void
+   +donneTexte(): string
 }
+
 @enduml
